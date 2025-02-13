@@ -39,12 +39,18 @@ namespace ApiProjeKamp.WebApi.Controllers
             _context.SaveChanges();
             return Ok("Kategori Silme işlemi başarılı");
         }
-        [HttpGet("Get")]
+        [HttpGet("GetCategory")]
         public IActionResult GetCategory(int id)
         {
             var value = _context.Categories.Find(id);
             return Ok(value);
         }
-
+        [HttpPut]
+        public IActionResult UpdateCategory(Category category)
+        {
+            _context.Categories.Update(category);
+            _context.SaveChanges();
+            return Ok("Kategori Güncelleme işlemi başarılı");
+        }
     }
 }
