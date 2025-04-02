@@ -1,4 +1,4 @@
-﻿namespace ApiProjeKamp.WebApi.DTOs
+﻿namespace ApiProjeKamp.WebApi.DTOs.ContactDTOs
 {
     public class UpdateContactDTO
     {

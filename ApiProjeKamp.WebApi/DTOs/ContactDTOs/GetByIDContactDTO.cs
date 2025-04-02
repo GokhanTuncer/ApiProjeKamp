@@ -1,6 +1,6 @@
-﻿namespace ApiProjeKamp.WebApi.DTOs
+﻿namespace ApiProjeKamp.WebApi.DTOs.ContactDTOs
 {
-    public class ResultContactDTO
+    public class GetByIDContactDTO
     {
         public int ContactID { get; set; }
         public string MapLocation { get; set; }
