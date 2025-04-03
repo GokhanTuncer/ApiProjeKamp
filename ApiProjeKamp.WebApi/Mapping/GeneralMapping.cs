@@ -21,6 +21,8 @@ namespace ApiProjeKamp.WebApi.Mapping
             CreateMap<Message, GetByIDMessageDTO>().ReverseMap();
 
             CreateMap<Product, CreateProductDTO>().ReverseMap();
+            CreateMap<Product, ResultProductWithCategoryDTO>().ForMember(x=>x.CategoryName, y=>y.MapFrom(z=>z.Category.CategoryName)).ReverseMap();
+            
         }
     }
 }
