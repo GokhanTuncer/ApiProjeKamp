@@ -4,11 +4,11 @@ using Newtonsoft.Json;
 
 namespace ApiProjeKamp.WebUI.ViewComponents
 {
-    public class _ServiceDefaultViewComponent : ViewComponent
+    public class _ServiceDefaultViewComponentPartial : ViewComponent
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public _ServiceDefaultViewComponent(IHttpClientFactory httpClientFactory)
+        public _ServiceDefaultViewComponentPartial(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -21,10 +21,6 @@ namespace ApiProjeKamp.WebUI.ViewComponents
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<List<ResultServiceDTO>>(jsonData);
-            }
-            else
-            {
-               
             }
             return View();
         }
