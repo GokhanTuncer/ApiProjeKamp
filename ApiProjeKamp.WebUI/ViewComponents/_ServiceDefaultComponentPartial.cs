@@ -21,6 +21,7 @@ namespace ApiProjeKamp.WebUI.ViewComponents
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<List<ResultServiceDTO>>(jsonData);
+                return View(values);
             }
             return View();
         }
