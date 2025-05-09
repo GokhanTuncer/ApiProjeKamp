@@ -4,11 +4,11 @@ using Newtonsoft.Json;
 
 namespace ApiProjeKamp.WebUI.ViewComponents
 {
-    public class _ServiceDefaultViewComponentPartial : ViewComponent
+    public class _ServiceDefaultComponentPartial : ViewComponent
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public _ServiceDefaultViewComponentPartial(IHttpClientFactory httpClientFactory)
+        public _ServiceDefaultComponentPartial(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
