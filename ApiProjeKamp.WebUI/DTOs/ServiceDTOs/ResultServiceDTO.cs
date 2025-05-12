@@ -1,4 +1,4 @@
-﻿namespace ApiProjeKamp.WebUI.DTOs
+﻿namespace ApiProjeKamp.WebUI.DTOs.ServiceDTOs
 {
     public class ResultServiceDTO
     {
