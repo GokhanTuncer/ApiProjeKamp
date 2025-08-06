@@ -1,6 +1,8 @@
-﻿using ApiProjeKamp.WebApi.DTOs.FeatureDTOs;
+﻿using ApiProjeKamp.WebApi.DTOs.ContactDTOs;
+using ApiProjeKamp.WebApi.DTOs.FeatureDTOs;
 using ApiProjeKamp.WebApi.DTOs.MessageDTOs;
 using ApiProjeKamp.WebApi.DTOs.ProductDTOs;
+using ApiProjeKamp.WebApi.DTOs.TestimonialDTOs;
 using ApiProjeKamp.WebApi.Entities;
 using AutoMapper;
 
@@ -19,6 +21,13 @@ namespace ApiProjeKamp.WebApi.Mapping
             CreateMap<Message, UpdateMessageDTO>().ReverseMap();
             CreateMap<Message, CreateMessageDTO>().ReverseMap();
             CreateMap<Message, GetByIDMessageDTO>().ReverseMap();
+
+            CreateMap<Contact, ResultContactDTO>().ReverseMap();
+            CreateMap<Contact, GetByIDContactDTO>().ReverseMap();
+            CreateMap<Contact, CreateContactDTO>().ReverseMap();
+            CreateMap<Contact, UpdateContactDTO>().ReverseMap();
+
+            CreateMap<Testimonial, ResultTestimonialDTO>().ReverseMap();    
 
             CreateMap<Product, CreateProductDTO>().ReverseMap();
             CreateMap<Product, ResultProductWithCategoryDTO>().ForMember(x=>x.CategoryName, y=>y.MapFrom(z=>z.Category.CategoryName)).ReverseMap();
