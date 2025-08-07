@@ -1,6 +1,7 @@
 ﻿using ApiProjeKamp.WebApi.DTOs.ContactDTOs;
 using ApiProjeKamp.WebApi.DTOs.FeatureDTOs;
 using ApiProjeKamp.WebApi.DTOs.MessageDTOs;
+using ApiProjeKamp.WebApi.DTOs.NotificationDTOs;
 using ApiProjeKamp.WebApi.DTOs.ProductDTOs;
 using ApiProjeKamp.WebApi.DTOs.TestimonialDTOs;
 using ApiProjeKamp.WebApi.Entities;
@@ -26,6 +27,11 @@ namespace ApiProjeKamp.WebApi.Mapping
             CreateMap<Contact, GetByIDContactDTO>().ReverseMap();
             CreateMap<Contact, CreateContactDTO>().ReverseMap();
             CreateMap<Contact, UpdateContactDTO>().ReverseMap();
+
+            CreateMap<Notification, ResultNotificationDTO>().ReverseMap();
+            CreateMap<Notification, GetNotificationByIDDTO>().ReverseMap();
+            CreateMap<Notification, CreateNotificationDTO>().ReverseMap();
+            CreateMap<Notification, UpdateNotificationDTO>().ReverseMap();
 
             CreateMap<Testimonial, ResultTestimonialDTO>().ReverseMap();    
 
