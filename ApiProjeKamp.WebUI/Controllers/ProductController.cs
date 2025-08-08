@@ -19,7 +19,7 @@ namespace ApiProjeKamp.WebUI.Controllers
         public async Task<IActionResult> ProductList()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync("https://localhost:7246/api/Products");
+            var response = await client.GetAsync("https://localhost:7246/api/Products/ProductListWithCategory");
 
             if (response.IsSuccessStatusCode)
             {
