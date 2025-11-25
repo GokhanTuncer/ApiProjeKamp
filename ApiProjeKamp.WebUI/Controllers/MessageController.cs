@@ -1,7 +1,9 @@
 ﻿using ApiProjeKamp.WebUI.DTOs.MessageDTOs;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 using System.Text;
+using static ApiProjeKamp.WebUI.Controllers.AIController;
 
 namespace ApiProjeKamp.WebUI.Controllers
 {
@@ -77,6 +79,56 @@ namespace ApiProjeKamp.WebUI.Controllers
             }
             return View();
 
+        }
+        [HttpGet]
+        public async Task<IActionResult> AnswerMessageWithOpenAI(int id, string prompt)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync($"https://localhost:7246/api/Messages/GetMessage?id=" + id);
+            var jsonData = await responseMessage.Content.ReadAsStringAsync();
+            var value = JsonConvert.DeserializeObject<GetMessageByIDDTO>(jsonData);
+            prompt = value.MessageDetails;
+
+            var apiKey = "APIKEYGIR";      //API Key buraya
+
+            using var client2 = new HttpClient();
+            client2.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
+
+            var requestData = new
+            {
+                model = "gpt-3.5-turbo",
+                messages = new[]
+                {
+                    new {
+                        //Ai'nin rolü
+                        role = "system",
+                        content = "Sen bir restaurant için kullanıcıların göndermiş oldukları mesajları olabildiğince olumlu ve detaylı,müşteri memnuniyeti gözeten cevaplar veren bir yapay zeka aracısın. Amaç, kullanıcı tarafından gönderilen mesajlara en olumlu ve en mantıklı cevapları vermek."
+                    },
+                    new
+                    {
+                        //Kullanıcının rolü
+
+                        role = "user",
+                        content = prompt
+
+                    }
+                },
+                temperature = 0.5 //0, daha deterministik; 1, daha yaratıcı cevap
+            };
+            var response = await client2.PostAsJsonAsync("https://api.openai.com/v1/chat/completions", requestData);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<OpenAIResponse>();
+                var content = result.choices[0].message.content;
+                ViewBag.answerAI = content;
+            }
+            else
+            {
+                ViewBag.answerAI = "Bir hata oluştu: " + response.StatusCode;
+            }
+
+            return View(value);
         }
     }
 }

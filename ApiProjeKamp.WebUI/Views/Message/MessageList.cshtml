@@ -38,7 +38,7 @@
                                         <td>@item.Email</td>
                                         <td>@item.Subject</td>
                                         <td>@item.SendDate.ToString("dd-MMM-yyyy")</td>
-                                       
+                                        <td><a href="/Message/AnswerMessageWithOpenAI/@item.MessageID/" class="btn btn-danger">Sil</a></td>
                                         <td><a href="/Message/DeleteMessage/@item.MessageID/" class="btn btn-danger">Sil</a></td>
                                         <td><a href="/Message/UpdateMessage/@item.MessageID/" class="btn btn-success">Güncelle</a></td>
                                     </tr>
