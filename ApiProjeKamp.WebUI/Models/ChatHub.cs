@@ -9,7 +9,7 @@ namespace ApiProjeKamp.WebUI.Models
 {
     public class ChatHub : Hub
     {
-        private const string apiKey = "";
+        private const string apiKey = ""; 
         private const string modelgpt = "gpt-4o-mini";
         private readonly IHttpClientFactory _httpClientFactory;
 
