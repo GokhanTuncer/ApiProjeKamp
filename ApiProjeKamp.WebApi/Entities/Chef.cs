@@ -1,4 +1,6 @@
-﻿namespace ApiProjeKamp.WebApi.Entities
+﻿using System.Security.Cryptography.Pkcs;
+
+namespace ApiProjeKamp.WebApi.Entities
 {
     public class Chef
     {
@@ -7,5 +9,7 @@
         public string Title { get; set; }
         public string Description { get; set; }
         public string ImageURL { get; set; }
+
+        public List<EmployeeTaskChef> EmployeeTaskChefs { get; set; }
     }
 }
