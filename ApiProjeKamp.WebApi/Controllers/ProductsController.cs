@@ -1,11 +1,14 @@
 ﻿using ApiProjeKamp.WebApi.Context;
+using ApiProjeKamp.WebApi.DTOs.AboutDTOs;
 using ApiProjeKamp.WebApi.DTOs.ProductDTOs;
 using ApiProjeKamp.WebApi.Entities;
+using ApiProjeKamp.WebUI.DTOs.ProductDTOs;
 using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using UpdateProductDTO = ApiProjeKamp.WebApi.DTOs.ProductDTOs.UpdateProductDTO;
 
 namespace ApiProjeKamp.WebApi.Controllers
 {
@@ -62,22 +65,23 @@ namespace ApiProjeKamp.WebApi.Controllers
             return Ok(value);
         }
         [HttpPut]
-        public IActionResult UpdateProduct(Product product)
+        public IActionResult UpdateProduct(UpdateProductDTO updateProductDTO)
         {
-            var validationResult = _productValidator.Validate(product);
+            var value = _mapper.Map<Product>(updateProductDTO);
+            var validationResult = _productValidator.Validate(value);
             if (!validationResult.IsValid)
             {
                 return BadRequest(validationResult.Errors.Select(x => x.ErrorMessage));
             }
             else
             {
-                _context.Products.Update(product);
+                _context.Products.Update(value);
                 _context.SaveChanges();
                 return Ok("Ürün ekleme işlemi başarılı");
             }
         }
         [HttpPost("CreateProductWithCategory")]
-        public IActionResult CreateProductWithCategory(CreateProductDTO createProductDTO)
+        public IActionResult CreateProductWithCategory(ApiProjeKamp.WebApi.DTOs.ProductDTOs.CreateProductDTO createProductDTO)
         {
             var value =_mapper.Map<Product>(createProductDTO);
             _context.Products.Add(value);
